@@ -381,16 +381,7 @@ module.exports = function(grunt) {
 				}],	
 				verbose: true
 			}
-		},
-        connect: {
-            demo: {
-                options: {
-                    port: 8080,
-                    base: "../TemplatePackage/3.0/modules/",
-                    keepalive: true
-                }
-            }
-        },
+		},		
 	});
 
 	// README: 
@@ -517,11 +508,6 @@ module.exports = function(grunt) {
 		grunt.loadNpmTasks('grunt-contrib-compress');
 		grunt.task.run('compress');
 	});
-
-	grunt.registerTask('connect', [], function() {
-		grunt.loadNpmTasks('grunt-contrib-connect');
-		grunt.task.run('connect');
-	});	
 
 	// The build version of the JS includes should only reference the built JS files
 	grunt.registerTask('update', 'Update includes for build package', function() {
