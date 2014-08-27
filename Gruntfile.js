@@ -1,4 +1,6 @@
 module.exports = function(grunt) {
+	// load all grunt tasks
+    // require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 	var cfg = {
 		pkg: grunt.file.readJSON('package.json'),
 		version: function() {
@@ -244,22 +246,53 @@ module.exports = function(grunt) {
 		},
 		jshint: {
 			options: {
-				curly: true,
-				eqeqeq: true,
-				indent: 4,
-				quotmark: 'single',
-				// undef: true,
-				eqnull: true,
-				browser: true,
-				unused: true,
-				trailing: true,
-				evil: true,
-				jquery: true,
 				globals: {
-					jQuery: true
+					jQuery: true,
+					console: true,
+					module: true,
+					'CDC': true,
+					'log': true,
+					'Modernizr': true,
+					'_': true,
+					alert: true
 				},
-				smarttabs: true,
-			},
+				'predef': [
+					'_',
+					'Modernizr',
+					'moment',
+					'$',
+					'enquire'
+				],				
+				'smarttabs': true,
+				'maxparams': 5,
+				'maxdepth': 5,
+				'maxstatements': 25,
+				'maxcomplexity': 10,
+				// 'es5': true,
+				'browser': true,
+				'boss': false,
+				'curly': false,
+				'debug': false,
+				'devel': false,
+				'eqeqeq': true,
+				'evil': true,
+				'forin': false,
+				'immed': true,
+				'laxbreak': false,
+				'newcap': true,
+				'noarg': true,
+				'noempty': false,
+				'nonew': false,
+				'nomen': false,
+				'onevar': true,
+				'plusplus': false,
+				'regexp': false,
+				'undef': true,
+				'sub': true,
+				'strict': false,
+				'white': true,
+				'unused': true				
+			},			
 			gf: {
 				options: {
 					reporter:'jslint',
@@ -391,7 +424,10 @@ module.exports = function(grunt) {
 
 	// Default task (if you just run grunt from cmd line)
 	grunt.registerTask('default', 'Default Task', function() {
-		grunt.log.writeln('Loading Plugins');
+		grunt.log.subhead('!////////////////////////////////////////////////////////////////////////////////////////////////');
+		grunt.log.subhead('!/////   GRUNT by default runs without jshint or qunit. Test the build before deployment!   /////');
+		grunt.log.subhead('!////////////////////////////////////////////////////////////////////////////////////////////////');
+		grunt.log.ok('Loading Plugins...');
 	
 		grunt.loadNpmTasks('grunt-contrib-clean');
 		grunt.loadNpmTasks('grunt-contrib-less');
@@ -400,7 +436,7 @@ module.exports = function(grunt) {
 		grunt.loadNpmTasks('grunt-text-replace');
 		grunt.loadNpmTasks('grunt-contrib-compress');
 		
-		grunt.log.writeln('Running default task on build: ' + cfg.version());
+		grunt.log.ok('Running default task on build: ' + cfg.version());
 
 		grunt.task.run('clean:production');								// remove folders and files from output folder.
 		grunt.task.run('less:production');								// LESS is compiled into the working CSS folder, so has to occur before copy
@@ -460,9 +496,11 @@ module.exports = function(grunt) {
 		}
 	});
 
-	grunt.registerTask('qunit', [], function() {
+	grunt.registerTask('test', [], function() {
+		grunt.loadNpmTasks('grunt-contrib-jshint');
 		grunt.loadNpmTasks('grunt-contrib-qunit');
-		grunt.task.run('qunit');
+
+		grunt.task.run(['jshint', 'qunit']);
 	});
 
 	grunt.registerTask('replace', [], function() {
