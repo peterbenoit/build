@@ -392,17 +392,21 @@ module.exports = function(grunt) {
 				nospawn: true,
 				spawn: false
 			},
-			production: {
+			everything: {
 				files: '<%= pkg.directories.src %>/**/*',
-				tasks: ['less:production', 'uglify', 'sync']				
-			},
-			development: {
-				files: '<%= pkg.directories.src %><%= pkg.directories.less %>/*',
-				tasks: ['less:development', 'sync']
+				tasks: ['less:production', 'uglify', 'sync']		
 			},
 			sync: {
 				files: '<%= pkg.directories.src %>/**/*',
 				tasks: ['sync']
+			},
+			javascript: {
+				files: '<%= pkg.directories.src %>/js/**/*',
+				tasks: ['uglify', 'sync']
+			},
+			less: {
+				files: '<%= pkg.directories.src %>/less/**/*',
+				tasks: ['less:production', 'sync']	
 			}
 		},
 		sync: {
@@ -517,12 +521,13 @@ module.exports = function(grunt) {
 		grunt.loadNpmTasks('grunt-contrib-watch');
 
 		if (arguments.length === 0) {
-			grunt.task.run('watch:production');
+			grunt.task.run('watch:everything');
 		}
 		else {
 			var a = arguments[0];
-			if(a === 'p' || a === 'prod') { a = 'production'; }
-			if(a === 'd' || a === 'dev') { a = 'development'; }
+			if(a === 'p' || a === 'prod' || a === 'e') { a = 'everything'; }
+			if(a === 'j' || a === 'js') { a = 'javascript'; }
+			if(a === 'l') { a = 'less'; }
 			if(a === 's') { a = 'sync'; }
 			grunt.task.run('watch:' + a);
 		}			
