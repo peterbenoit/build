@@ -418,7 +418,15 @@ module.exports = function(grunt) {
 				}],	
 				verbose: true
 			}
-		},		
+		},
+		weinre: {
+			dev: {
+				options: {
+					httpPort: 8082,
+					boundHost: '-all-'
+				}
+			}
+		}
 	});
 
 	// README: 
@@ -516,6 +524,11 @@ module.exports = function(grunt) {
 		grunt.loadNpmTasks('grunt-docco');
 		grunt.task.run('docco');
 	});
+
+	grunt.registerTask('weinre', [], function() {
+		grunt.loadNpmTasks('grunt-weinre');
+		grunt.task.run('weinre');
+	});	
 
 	grunt.registerTask('watch', [], function() {
 		grunt.loadNpmTasks('grunt-contrib-watch');
