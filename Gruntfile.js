@@ -101,6 +101,18 @@ module.exports = function(grunt) {
 						'<%= pkg.directories.src %>js/app.js'
 					]
 				}
+			},
+			metrics : {
+				options: {
+					mangle: false,
+					sourceMap: false
+				},				
+				files: [{
+					expand: true,
+					cwd: '<%= pkg.directories.metrics %>',
+					src: '**/*.js',
+					dest: '<%= pkg.directories.metricsdest %>'
+				}]
 			}
 		},
 		less: {
@@ -441,7 +453,7 @@ module.exports = function(grunt) {
 		grunt.log.subhead('!////////////////////////////////////////////////////////////////////////////////////////////////');
 		grunt.log.ok('Loading Plugins...');
 	
-		grunt.loadNpmTasks('grunt-contrib-clean');
+		// grunt.loadNpmTasks('grunt-contrib-clean');
 		grunt.loadNpmTasks('grunt-contrib-less');
 		grunt.loadNpmTasks('grunt-contrib-copy');
 		grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -450,7 +462,7 @@ module.exports = function(grunt) {
 		
 		grunt.log.ok('Running default task on build: ' + cfg.version());
 
-		grunt.task.run('clean:production');								// remove folders and files from output folder.
+		// grunt.task.run('clean:production');								// remove folders and files from output folder.
 		grunt.task.run('less:production');								// LESS is compiled into the working CSS folder, so has to occur before copy
 		grunt.task.run('copy:production');								// copy all files that don't need modified
 		grunt.task.run('less:wcms');

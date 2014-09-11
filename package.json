@@ -3,7 +3,7 @@
   "majorVersion": "3",
   "minorVersion": "1",
   "buildVersion": "3",
-  "releaseCandidate": "",
+  "releaseCandidate": "1",
   "fileName": "CDC_TemplatePackage_v",
   "devDependencies": {
     "grunt": "~0.4.3",
@@ -43,6 +43,8 @@
   "directories": {
     "src": "C:/TemplatePackage/3.0/",
     "dest": "C:/build_output/3.0/",
+    "metrics": "C:/JScript/",
+    "metricsdest": "C:/build_output/JScript/",
     "qunit": "C:/TemplatePackage/3.0/modules/tests/qunit/",
     "css": "css",
     "fonts": "fonts",
