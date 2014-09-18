@@ -18,6 +18,7 @@
     "grunt-contrib-uglify ": "~0.5.1",
     "grunt-contrib-watch": "~0.6.1",
     "grunt-docco": "~0.3.3",
+    "grunt-exec": "^0.4.6",    
     "grunt-express": "~1.2.1",
     "grunt-express-server": "^0.4.17",
     "grunt-jsonlint": "^1.0.4",
@@ -63,6 +64,26 @@
     "docs": "C:/build_output/docs/",
     "devenv": "//APD-V-NCHM-VSS1/idk1/TemplatePackage/3.0"
   },
+  "directories_mac": {
+    "src": "~/DropBox/TemplatePackage/3.0/",
+    "dest": "~/DropBox/build_output/3.0/",
+    "qunit": "~/DropBox/TemplatePackage/3.0/modules/tests/qunit/",
+    "css": "css",
+    "fonts": "fonts",
+    "images": "images",
+    "includes": "includes",
+    "local": "local",
+    "modules": "modules",
+    "js": "js",
+    "json": "js/json",
+    "less": "less",
+    "releases": "~/DropBox/build_output/releases/",
+    "prod": "~/DropBox/build_output/prod/",
+    "dev": "~/DropBox/build_output/dev/",
+    "errors": "~/DropBox/build_output/errors/",
+    "docs": "~/DropBox/build_output/docs/",
+    "devenv": "//APD-V-NCHM-VSS1/idk1/TemplatePackage/3.0"
+  },  
   "scripts": {
     "test": "npm run test-pre",
     "test-pre": "grunt jshint"

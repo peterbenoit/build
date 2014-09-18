@@ -16,11 +16,22 @@ module.exports = function(grunt) {
 
 			return build;	
 		},
+		os: function() {
+
+			var dir = 'directories_win'
+			if(process.platform === 'darwin') {
+				// mac
+				dir = 'directories_mac'
+			}
+
+			return dir;
+		}
 	};
 	grunt.initConfig({
 		pkg: cfg.pkg,
 		src: '<%= grunt.task.current.file.src %>',
 		version: cfg.version(),
+		os: cfg.os(),
 		time: function () {
 			var t = new Date().getTime() / 1000,
 			h = parseInt(t / 3600) % 24,
@@ -596,6 +607,11 @@ module.exports = function(grunt) {
 		grunt.loadNpmTasks('grunt-contrib-compress');
 		grunt.task.run('compress');
 	});
+
+	grunt.registerTask('exec', [], function() {
+		grunt.loadNpmTasks('grunt-exec');
+		grunt.task.run('exec:list_all_files');
+	});	
 
 	// The build version of the JS includes should only reference the built JS files
 	grunt.registerTask('update', 'Update includes for build package', function() {
