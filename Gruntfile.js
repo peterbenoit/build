@@ -438,7 +438,21 @@ module.exports = function(grunt) {
 					boundHost: '-all-'
 				}
 			}
-		}
+		},
+		jsonlint: {
+			pkg: {
+				src: ['package.json']
+			}
+			// wcms: {
+			// 	src: ['<%= pkg.directories.src %>/js/json/icons-jsonp.json', 
+			// 		'<%= pkg.directories.src %>/js/json/themes-jsonp.json',
+			// 		'<%= pkg.directories.src %>/js/json/youtubePlaylist.json',
+			// 		'<%= pkg.directories.src %>/js/json/youtubePlaylist_NonProd.json',
+			// 		'<%= pkg.directories.src %>/js/json/youtubeVideoCategories.json',
+			// 		'<%= pkg.directories.src %>/js/json/youtubeVideoCategories_NonProd.json'
+			// 	]	
+			// }
+		}		
 	});
 
 	// README: 
@@ -500,6 +514,12 @@ module.exports = function(grunt) {
 			if(a === 'g') { a = 'gf'; }			
 			grunt.task.run('jshint:' + a);
 		}
+	});
+
+	grunt.registerTask('jsonlint', [], function() {
+		grunt.loadNpmTasks('grunt-jsonlint');
+
+		grunt.task.run('jsonlint');
 	});
 
 	grunt.registerTask('uglify', [], function() {

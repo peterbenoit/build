@@ -6,4 +6,6 @@ SET args=/E /XO /FFT /NP /XD ".git" ".svn" ".gitattributes" ".gitignore"
 
 grunt && robocopy %src% %dest% %args%
 
+
+REM removing the folder resets all the datestamps, making the robocopy flags moot
 REM rmdir %src% /S/Q && 
