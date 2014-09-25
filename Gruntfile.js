@@ -1,6 +1,6 @@
 module.exports = function(grunt) {
 	// load all grunt tasks
-    // require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+	// require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 	var cfg = {
 		pkg: grunt.file.readJSON('package.json'),
 		version: function() {
@@ -463,7 +463,17 @@ module.exports = function(grunt) {
 			// 		'<%= pkg.directories.src %>/js/json/youtubeVideoCategories_NonProd.json'
 			// 	]	
 			// }
-		}		
+		},
+		browserSync: {
+			bsFiles: {
+				src : '<%= pkg.directories.src %>/css/*.css'
+			},
+			options: {
+				proxy: {
+					baseDir: "<%= pkg.urls.local %>"
+				}
+			}
+		}
 	});
 
 	// README: 
@@ -496,6 +506,14 @@ module.exports = function(grunt) {
 		grunt.task.run('update');										// write dynamically created files - and save in build output folder
 		grunt.task.run('compress');										// zip the package and save in build_output/releases folder by default
 	});
+
+	grunt.registerTask('browsersync', [], function() {
+		grunt.loadNpmTasks('grunt-browser-sync');
+
+		grunt.task.run('browserSync');
+	});
+
+	
 
 	grunt.registerTask('less', [], function() {
 		grunt.loadNpmTasks('grunt-contrib-less');
