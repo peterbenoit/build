@@ -3,7 +3,7 @@
   "majorVersion": "3",
   "minorVersion": "1",
   "buildVersion": "3",
-  "releaseCandidate": "1",
+  "releaseCandidate": "",
   "fileName": "CDC_TemplatePackage_v",
   "devDependencies": {
     "grunt": "~0.4.3",
